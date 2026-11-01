@@ -102,6 +102,9 @@ BookingService
 - On startup, `TravelSystem.loadAll()` reads MySQL into the data structures. Every add, update, or delete changes **both** the structure and MySQL.
 
 ## Git Workflow
+## Pull Requests
+Every member opens their own pull request into `main`. Nobody pushes directly to `main`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full step-by-step guide.
 Before you start working:
 ```
 git pull origin main
