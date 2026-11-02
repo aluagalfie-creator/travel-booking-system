@@ -1,4 +1,4 @@
-package com.mycompany.customerhashtable;
+package gui;
 
 
 import javax.swing.*;
