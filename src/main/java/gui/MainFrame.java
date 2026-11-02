@@ -27,12 +27,13 @@ public class MainFrame extends JFrame {
         if (role.equals("ADMIN")) {
             tabs.addTab("Flights", new FlightPanel(TravelSystem.flights));
             tabs.addTab("Hotels", new HotelPanel());
+            tabs.addTab("Packages", new PackagePanel());
+            tabs.addTab("Customers", new CustomerPanel());
             tabs.addTab("Reports", new ReportPanel());
-            // tabs.addTab("Customers", new CustomerPanel());   // after Cedie's PR
         } else {
-            // tabs.addTab("Search", new FlightPanel(TravelSystem.flights, false)); // after Alyanna adds a read-only mode
+            tabs.addTab("Packages", new PackagePanel());
+            tabs.addTab("Book", new BookingPanel());
             tabs.addTab("My Bookings", new HistoryPanel());
-            // tabs.addTab("Packages", new PackagePanel());     // after Rhyjel's PR
         }
 
         btnLogout.addActionListener(e -> logout());

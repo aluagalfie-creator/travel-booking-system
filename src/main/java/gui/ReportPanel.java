@@ -2,7 +2,10 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import javax.swing.*;
+import model.Booking;
+import service.TravelSystem;
 
 public class ReportPanel extends JPanel implements ActionListener {
     private JLabel lblTitle, lblTotal;
@@ -15,7 +18,7 @@ public class ReportPanel extends JPanel implements ActionListener {
         listModel = new DefaultListModel<>();
 
         lblTitle = new JLabel("ALL BOOKINGS REPORT");
-        lblTitle.setBounds(280, 10, 250, 30);
+        lblTitle.setBounds(400, 10, 250, 30);
         add(lblTitle);
 
         btnLoad = new JButton("Load All");
@@ -26,13 +29,13 @@ public class ReportPanel extends JPanel implements ActionListener {
         btnClear.setBounds(160, 55, 100, 25);
         add(btnClear);
 
-        lblTotal = new JLabel("Total bookings: 0");
-        lblTotal.setBounds(300, 50, 200, 30);
+        lblTotal = new JLabel("Total bookings: 0 | Revenue: 0.00");
+        lblTotal.setBounds(300, 50, 400, 30);
         add(lblTotal);
 
         reportList = new JList<String>(listModel);
         JScrollPane scrollpane = new JScrollPane(reportList);
-        scrollpane.setBounds(50, 110, 640, 390);
+        scrollpane.setBounds(50, 110, 860, 420);
         add(scrollpane);
 
         btnLoad.addActionListener(this);
@@ -43,13 +46,20 @@ public class ReportPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnLoad) {
             listModel.clear();
-            // TODO: BookingService.getAllBookings(), then listModel.addElement(...) for each booking
-            lblTotal.setText("Total bookings: " + listModel.getSize());
+            LinkedList<Booking> all = TravelSystem.bookings.getAllBookings();
+            double Revenue = 0;
+            for (int i = 0; i < all.size(); i++) {
+                listModel.addElement("User #" + all.get(i).getUserId() + " | "
+                        + TravelSystem.bookings.describe(all.get(i)));
+                Revenue = Revenue + all.get(i).getTotalPrice();
+            }
+            lblTotal.setText("Total bookings: " + listModel.getSize()
+                    + " | Revenue: " + String.format("%.2f", Revenue));
         }
 
         if (e.getSource() == btnClear) {
             listModel.clear();
-            lblTotal.setText("Total bookings: 0");
+            lblTotal.setText("Total bookings: 0 | Revenue: 0.00");
         }
     }
 }
