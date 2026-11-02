@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+import model.User;
 import service.TravelSystem;
 
 public class LoginFrame extends JFrame {
@@ -48,21 +49,18 @@ public class LoginFrame extends JFrame {
             return;
         }
 
-        // TODO after Cedie's PR is merged, replace the message below with:
-        // User u = TravelSystem.customers.getByUsername(username);
-        // if (u == null || !u.getPassword().equals(password)) {
-        //     JOptionPane.showMessageDialog(this, "Wrong username or password.");
-        //     return;
-        // }
-        // TravelSystem.currentUser = u;
-        // new MainFrame(u.getRole()).setVisible(true);
-        // dispose();
-        JOptionPane.showMessageDialog(this, "Login is not connected yet.");
+        User u = TravelSystem.customers.getByUsername(username);
+        if (u == null || !u.getPassword().equals(password)) {
+            JOptionPane.showMessageDialog(this, "Wrong username or password.");
+            return;
+        }
+
+        TravelSystem.currentUser = u;
+        new MainFrame(u.getRole()).setVisible(true);
+        dispose();
     }
 
     private void register() {
-        // TODO after Cedie's PR is merged: new RegisterFrame().setVisible(true);
-        
-JOptionPane.showMessageDialog(this, "Registration is not connected yet.");
+        new RegisterFrame().setVisible(true);
     }
 }
