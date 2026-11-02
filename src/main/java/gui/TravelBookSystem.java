@@ -10,9 +10,9 @@ package gui;
  */
 public class TravelBookSystem {
 
-    public static void main(String[] args) {
-        if (db.DBConnection.getConnection() != null) {
-        System.out.println("Connected!");
-    }
-    }
+   public static void main(String[] args) {
+    service.TravelSystem.loadAll();
+    new LoginFrame().setVisible(true);
 }
+    }
+
