@@ -1,3 +1,6 @@
+package com.mycompany.customerhashtable;
+
+
 import javax.swing.*;
 import java.awt.*;
 
