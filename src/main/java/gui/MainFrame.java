@@ -1,28 +1,38 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import service.TravelSystem;
 
-public class MainFrame extends JFrame {
-    private JLabel lblWelcome = new JLabel();
-    private JButton btnLogout = new JButton("Logout");
-    private JTabbedPane tabs = new JTabbedPane();
+public class MainFrame extends JFrame implements ActionListener {
+    private JLabel lblWelcome;
+    private JButton btnLogout;
+    private JTabbedPane tabs;
 
     public MainFrame(String role) {
         setTitle("Travel Booking System - " + role);
         setSize(1000, 680);
         setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         String name = "User";
         if (TravelSystem.currentUser != null) {
             name = TravelSystem.currentUser.getName();
         }
-        lblWelcome.setText("Welcome, " + name);
+
+        lblWelcome = new JLabel("Welcome, " + name);
         lblWelcome.setBounds(15, 10, 400, 28);
+        add(lblWelcome);
+
+        btnLogout = new JButton("Logout");
         btnLogout.setBounds(880, 10, 95, 28);
+        add(btnLogout);
+
+        tabs = new JTabbedPane();
         tabs.setBounds(10, 45, 965, 590);
+        add(tabs);
 
         if (role.equals("ADMIN")) {
             tabs.addTab("Flights", new FlightPanel(TravelSystem.flights));
@@ -36,16 +46,16 @@ public class MainFrame extends JFrame {
             tabs.addTab("My Bookings", new HistoryPanel());
         }
 
-        btnLogout.addActionListener(e -> logout());
-
-        add(lblWelcome);
-        add(btnLogout);
-        add(tabs);
+        //Add to ActionListener
+        btnLogout.addActionListener(this);
     }
 
-    private void logout() {
-        TravelSystem.currentUser = null;
-        new LoginFrame().setVisible(true);
-        dispose();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnLogout) {
+            TravelSystem.currentUser = null; //BE
+            new LoginFrame().setVisible(true); //FE
+            dispose();
+        }
     }
 }

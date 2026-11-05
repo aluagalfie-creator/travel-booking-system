@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package gui;
+
+import service.TravelSystem;
 
 /**
  *
@@ -10,9 +8,9 @@ package gui;
  */
 public class TravelBookSystem {
 
-   public static void main(String[] args) {
-    service.TravelSystem.loadAll();
-    new LoginFrame().setVisible(true);
-}
+    public static void main(String[] args) {
+        TravelSystem.loadAll(); //BE: load MySQL data into the data structures
+        LoginFrame app = new LoginFrame();
+        app.setVisible(true);
     }
-
+}
