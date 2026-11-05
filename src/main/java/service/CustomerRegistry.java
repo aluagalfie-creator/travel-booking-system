@@ -8,7 +8,7 @@ public class CustomerRegistry {
     private CustomerHashTable table = new CustomerHashTable();
     private UserDB db = new UserDB();
 
-    // Called by TravelSystem.loadAll() on startup. Loads every user, admin included.
+    
     public void loadFromDatabase() {
         table.clear();
         User[] all = db.getAllUsers();

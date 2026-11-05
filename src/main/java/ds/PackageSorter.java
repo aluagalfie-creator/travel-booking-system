@@ -2,10 +2,6 @@ package ds;
 
 import model.PackageDeal;
 
-/**
- * Insertion sort for package deals. Arrays only, no built-in sorting.
- * Time complexity: O(n^2) worst case, O(n) when already sorted.
- */
 public class PackageSorter {
 
     // ascending = true: cheapest first. ascending = false: most expensive first.

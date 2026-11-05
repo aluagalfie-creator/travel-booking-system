@@ -1,9 +1,6 @@
 package ds;
 
-/**
- * Simple singly linked list built from Node. SHARED FILE: if the group or the
- * professor already has a LinkedList class, delete this one and use theirs.
- */
+
 public class LinkedList {
     private Node head;
     private int size;
