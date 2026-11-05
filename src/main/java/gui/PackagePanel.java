@@ -9,10 +9,7 @@ import model.Hotel;
 import model.PackageDeal;
 import service.TravelSystem;
 
-/**
- * Package deals (flight + hotel + nights). Admin adds and deletes packages,
- * customers sort them and book one. Packages live in memory only.
- */
+
 public class PackagePanel extends JPanel {
     private static final int MAX = 100;
     private static PackageDeal[] store = new PackageDeal[MAX];
